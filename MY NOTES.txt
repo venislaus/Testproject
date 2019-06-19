@@ -1,0 +1,96 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+-------------------------------------------------------------------------------------------------
+php artisan make:model Project -m
+
+php artisan migrate
+
+php artisan make:controller ProjectController --resource
+
+php artisan route:list
+---------------------------------------------------------------------------
+php artisan make:migration add_activecollab_to_projects_table --table=projects
+$table->text('activecollab')->nullable()->after('hubstaff');
+$table->dropColumn('activecollab');
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+php artisan make:migration rename_tags_in_projects_table --table=projects
+
+$table->renameColumn('tags','hubstaff');
+---------------------------------------------------------------------------
+Route::get('projects/tags/{id}',['as'=>'projects.tags','uses'=>'ProjectController@tags']);
+
+Route::patch('projects/tags/{id}',['as'=>'projects.updatetags','uses'=>'ProjectController@updatetags']);
+
+
+php artisan make:migration change_tags_type_in_projects_table --table=projects
+
+$table->integer('tags')->change();
+
+$table->string('tags')->change();
+
+php artisan make:migration add_hubstaff2_column_in_projects_table --table=projects
+-------------------------------------------------------------------------------------------------------------------
+<input type="text" class="form-control" name="tags" value="{{ $project->tags }}" />
+
+ <td><a href="{{ route('projects.tags',$project->id)}}" class="btn btn-primary">Tags</a></td>
+Route::get('projects/tags/{id}',['as'=>'projects.tags','uses'=>'ProjectController@tags']);
+
+Route::patch('projects/tags/{id}',['as'=>'projects.updatetags','uses'=>'ProjectController@updatetags']);
+
+ public function tags($id)
+    {
+        $project = Project::find($id);
+
+        $project->tags = emploe
+        $hubstaffProjects = $this->restApi('projects?status=active');
+        $hubstaffProjects = $hubstaffProjects['projects'];
+
+        return view('projects.tags', compact('project','hubstaffProjects'));
+    }
+
+
+public function updatetags(Request $request, $id)
+    {
+        /*$request->validate([
+            'tags'=>'required'
+        ]);*/
+        $tags = implode(",",$request->get('tags'));
+
+        Project::where('id', $id)->update(array('tags' => $tags));
+
+        /*$project = Project::find($id);
+        $project->project_name = $request->get('project_name');
+        $project->hours_available = $request->get('hours_available');
+        $project->save();*/
+
+        return redirect('/projects')->with('success', 'Project Tags has been updated');
+    }
+-------------------------------------------------------------------------------------------------------------------
+ssh user@server -p <port>
+
+ssh root@45.77.192.36 -p 22
+
+mysql -u merlin -p
+
+mysql -u ragul -p
+
+for Debian and Ubuntu:
+
+1
+apt-get install unzip
+for Red Hat Linux/Fedora/CentOS users:
+
+1
+yum install unzip
+
+
+php artisan migrate --path=/database/migrations/2019_03_28_185541_add_hubstaff2_column_in_projects_table.php
+
+
+ssh root@103.43.75.9 -p 22
+
+ssh infogenx@103.43.75.9 -p 22
+-----------------------------------------------------------------------------------------------------------------------------
