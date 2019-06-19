@@ -71,26 +71,20 @@ public function updatetags(Request $request, $id)
 -------------------------------------------------------------------------------------------------------------------
 ssh user@server -p <port>
 
-ssh root@45.77.192.36 -p 22
+ssh root@11.11.111.11 -p 22
 
-mysql -u merlin -p
+mysql -u john -p
 
-mysql -u ragul -p
+mysql -u simth -p
 
 for Debian and Ubuntu:
 
-1
 apt-get install unzip
 for Red Hat Linux/Fedora/CentOS users:
 
-1
 yum install unzip
 
 
 php artisan migrate --path=/database/migrations/2019_03_28_185541_add_hubstaff2_column_in_projects_table.php
 
-
-ssh root@103.43.75.9 -p 22
-
-ssh infogenx@103.43.75.9 -p 22
 -----------------------------------------------------------------------------------------------------------------------------
